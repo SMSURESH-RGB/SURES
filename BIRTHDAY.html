@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wishes</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 90%;
+            margin: 20px auto; /* Reduced margin for mobile view */
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 24px; /* Adjusted font size for mobile view */
+        }
+        button {
+            background-color: #ff69b4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px; /* Adjusted padding */
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        .hidden {
+            display: none;
+        }
+        #birthdayMessage {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff4500;
+            font-weight: bold;
+        }
+        #giftImage {
+            width: 100px; /* Adjusted width for mobile */
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #letterContainer {
+            margin-top: 20px;
+            font-size: 18px; /* Adjusted font size for mobile */
+            font-weight: bold;
+            display: inline-block;
+            white-space: pre-wrap;
+        }
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .message-line {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            margin: 10px 0;
+        }
+
+        /* Media Queries for Mobile Devices */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+            button {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+            #giftImage {
+                width: 80px; /* Smaller gift image for mobile */
+            }
+            #letterContainer {
+                font-size: 16px; /* Adjusted font size for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="greeting">🤝Happy Birthday🍫</h1>
+        <p id="message"></p>
+        <button onclick="displayMessage()">Click Birthday Message</button>
+        <div id="messageContainer" class="hidden"></div>
+        <img id="giftImage" src="D:\SURESH\MY_OWN_TASK\08-2024\PNG\Gift-3.png" alt="Gift Image" onclick="revealLetters()">
+        <div id="letterContainer" class="hidden"></div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function displayMessage()
+        {
+            const messages = [
+                "🤝Wishing you a day filled with love❣️laughter😄 and joy😊",
+                "✨May your special day be as wonderful as you are🌟",
+                "🎉Wish 🎈You 😀Happy Birthday🍬  👨‍👩‍👧‍👦Hope all your dreams come true🚀🌈✈️",
+                "🩺Here's to a year of health💪  😃Happiness and Success🏆",
+                "🥂Cheers to you on your birthday🎂 👯Have a fantastic day🍰☀️🎉"
+            ];
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = ''; // Clear previous messages
+            messageContainer.classList.remove('hidden');
+            
+            messages.forEach((message, index) => {
+                setTimeout(() => {
+                    const messageElement = document.createElement('p');
+                    messageElement.textContent = message;
+                    messageElement.className = 'message-line';
+                    messageContainer.appendChild(messageElement);
+                }, index * 2000); // Adjust delay as needed
+            });
+        }
+
+        function revealLetters()
+        {
+            const name = "WISH YOU HAPPY BIRTHDAY SURESH";
+            const letterContainer = document.getElementById('letterContainer');
+            letterContainer.innerHTML = ''; // Clear previous letters
+            letterContainer.classList.remove('hidden');
+            let index = 0;
+
+            function displayNextLetter()
+            {
+                if (index < name.length)
+                {
+                    const letterElement = document.createElement('span');
+                    letterElement.textContent = name[index];
+                    letterElement.className = 'letter';
+                    letterContainer.appendChild(letterElement);
+                    index++;
+                    setTimeout(displayNextLetter, 300); // Adjust speed as needed
+                }
+            }
+            displayNextLetter();
+        }
+    </script>
+</body>
+</html>
